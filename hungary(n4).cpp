@@ -46,8 +46,7 @@ bool next_generation(int node)
 
 int main()
 {
-	int n,
-		sol = 0;
+	int n;
 	cin >> n;
 
 	initial.resize(n, vector <int>(n));
@@ -55,7 +54,7 @@ int main()
 	y_potential.resize(n, INT_MAX);
 	matches.resize(n, -1);
 	found.resize(n, false);
-	
+
 	// заполнение исходной таблицы с ограничением: числа должны быть неотрицательны
 	for (int i = 0; i < n; i++)
 	{
@@ -81,10 +80,6 @@ int main()
 			x_potential[j] = min(x_potential[j], initial[i][j] - y_potential[i]);
 		}
 	}
-	for (int i = 0; i < n; i++)
-	{
-		sol += x_potential[i] + y_potential[i];
-	}
 
 	// цикл до тех пор, пока не соберутся все n сооветствий
 	int counter = 0;
@@ -109,7 +104,7 @@ int main()
 		// пытаемся через алгоритм куна увеличить мощность паросочетания не увеличивая потенциал,
 		// т.е. работаем с графом с ЖЁСТКИМИ рёбрами.
 		int temp_counter = counter;
-		
+
 		// z1, z2 списки нужны для МАГИИ, описанной ниже - нужно запомнить, какие вершины были посещены алгоритмом куна
 		z1.clear();
 		z2.clear();
